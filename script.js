@@ -49,27 +49,66 @@ function initpg() {
                     uvlight.innerHTML = "UV Index: ";
                     uvlight.append(UVindex);
                 });
-                let cityid = response.data.id;
+                let cityid = (response.data.id);
                 let forecastqueryURL = "http://api.openweathermap.org/data/2.5/forecast?id=" + cityid + "&appid=" + APIKey;
                 axios.get(forecastqueryURL)
                     .then(function(response) {
                         var forecastEls = document.querySelectorAll(".forecast");
                         for (i = 0; i < forecastEls.length; i++); {
-                            forecastEl[i].innerHTML="";
+                            forecastEls[i].innerHTML="";
                             var forecastindex = i * 8 + 4;
                             var forecastdate = new date (response.data.list[forecastindex].dx *1000);
-                            var forecstday = forecastdate.getdate();
+                            var forecastday = forecastdate.getdate();
                             var forecastmonth = forecastdate.getmonth();
                             var forecastyear = forecastdate.getdate();
                             var forecastEl= document.createElement('p');
+                            forecastEl.setAttribute("class", "mt-3 mb-0 forecast-date");
+                            forecastEl.innerHTML = forecastday + "/" + forecastmonth + "/" + forecastyear;
+                            forecastEl.append(forecastEl);
 
 
                         }
                     })
 
-
+        });
+    }
+    searchBtn.addEventListener("click", function() {
+        var searchInput = cityInput.value;
+        currentWeather(searchInput);
+        history.push(searchInput);
+        localStorage.setItem("search", JSON.stringify(history,));
+        renderHistory();
+    })
+    clearSearchBtn.addEventListener("click", function() {
+        localStorage.clear();
+        history = [];
+        renderHistory();
+    })
+    function k2f(k){
+        return math.floor((k-273.15) * 1.8 + 32);
+    }
+    function renderHistory() {
+        history.innerText = "";
+        for (var i = 0; i < history.length; i++) {
+            var historyEl = document.createElement("input")
+            historyEl.setAttribute("type", "text");
+            historyEl.setAttribute("randomly", true);
+            historyEl.setAttribute("class", "form-control d-block bg-white");
+            historyEl.setAttribute("value", history[i]);
+            historyEl.setAttribute("click", function() {
+                currentWeather(historyEl.value);
+            })
+            history.append(historyEl);
         }
     }
+    renderHistory();
+    if(history.length > 0) {
+        currentWeather(history[history.length - 1]);
+    }
+
+
 }
+initpg();
+
 
     
