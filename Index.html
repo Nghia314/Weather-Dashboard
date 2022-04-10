@@ -17,79 +17,34 @@
     />
     <title>Weather Dashboard</title>
   </head>
-  <!-- the main header for page -->
+  
+  <body>
+    <!-- the main header for page -->
   <header class="bg-dark text-center text-light p-3 m-1">
     <h1>Weather Dashboard</h1>
   </header>
-  <body>
-    <main class="container-dashboard">
-      <div class="row p-2">
-        <div class="col-3 bg-light dark text">
-          <p class="search-city">City Search</p>
-          <div class="input-group-text p-0">
-            <input
-              id="city-input"
-              type="text"
-              placeholder="Enter City name"
-              class="form-control"
-            />
-            <div class="input-group-append">
-              <button class="btn btn-primary" type="button" id="search-btn"> Search
-                <i class="fa fa-search"></i>
-              </button>
-            </div>
-          </div>
-          <button class="btn btn-primary" type="button" id="clear-search">
-            History Clear
-          </button>
-          <form id="history-search"></form>
-        </div>
-        <div class="col-10">
-          <div class="row">
-            <div class="col-10 rounded">
-              <div class="row">
-                <div class="col-10">
-                  <span id="cityname" class="cityname"></span>
-                </div>
+  <main class="container">
+      <div class="row">
+          <aside class="col-lg-12 bg-light">
+              <h2>Search For City</h2>
+              <div class="form-inline form-group">
+                  <input type="text" class="form-control" placeholder="Enter City" id="search">
+                  <button class="btn btn-primary" id="searchBtn">Search</button>
               </div>
-              <div class="row">
-                <div class="col-10">
-                  <p id="temperature" class="temperature"></p>
-                </div>
+              <ul class="list-group-history" id="searchHistory"></ul>
+            </aside>
+
+          <div class="col-lg-12 bg-light">
+              <h3  class="d-none"id="today-header">Today</h3>
+              <div id="today"></div>
+              <h4 class="d-none" id="forecast"> Five Days Forecast</h4>
+              <div id="forecast" class="row">
+
               </div>
-              <div class="row">
-                <div class="col-10">
-                  <p id="windspeed" class="windspeed"></p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-10">
-                  <p id="humidity" class="humidity"></p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-10">
-                  <p id="UV-light" class="UV-light"></p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row" id="fiveday-header">
-          <div class="col-10">
-              <h3>5-Day-Forcast</h3>
-          </div>
-        </div>
-        <div class="row">
-            <div class="col forcast- bg-primary text-black rounded"></div>
-            <div class="col forcast- bg-primary text-black rounded"></div>
-            <div class="col forcast- bg-primary text-black rounded"></div>
-            <div class="col forcast- bg-primary text-black rounded"></div>
-            <div class="col forcast- bg-primary text-black rounded"></div>
-        </div>
       </div>
-    </main>
+  </main>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
   <script src="script.js"></script>
 </html>
