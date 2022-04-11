@@ -3,6 +3,7 @@ var apiKey = "a2f42eab89f899c260e503d43e5c869c";
 // event listener for search button
 var searchBtn = document.getElementById("search-Btn");
 searchBtn.addEventListener("click", searchResult);
+searchResult.preventDefault();
 
 searchList();
 //function for search city pop up today weather, and forecast
@@ -136,26 +137,24 @@ if (JSON.parse(localStorage.getItem("searchHistory")) != null)
 else
   searchhistory = [];
 // save up previous search
-function saveSearch(search) {
+function saveSearch(searchhistory) {
   if (!searchhistory.includes(search)) {
-    searchhistory.push(search);
-    localStorage.setItem("searchHistory", JSON.stringify(searchhistory));
+    search.push(searchhistory);
+    localStorage.setItem("History", JSON.stringify(searchhistory));
   }
 }
 function renderSearch() {
   while (document.getElementById("searchHistory").firstChild) {
-    document
-      .getElementById("searchHistory")
-      .removeChild(document.getElementById("searchHistory").firstChild);
+    document.getElementById("searchHistory" ).removeChild(document.getElementById("searchHistory").firstChild);
   }
   searchList();
 }
 function searchList() {
-  searchhistory.forEach(function (search){
+  searchhistory.each(function (search){
     var historyItem = document.createElement("li");
     historyItem.className = "list-group-item";
     historyItem.textContent = search;
-    historyItem.addEventListener("click", function (event) {
+    historyItem.addEventListener("click", function(event) {
       weatherSearch(event.target.textContent);
       forecastSearch(event.target.textContent);
     });
