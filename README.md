@@ -22,6 +22,8 @@ Weather Dashboard is a form of input that run in the browser and use Web api to 
 - WHEN I click on a city in the search history
 - THEN I am again presented with current and future conditions for that city
 ##### Result
+Deployed : https://nghia314.github.io/Weather-Dashboard/
+<img width="1440" alt="Screen Shot 2022-04-10 at 9 25 51 PM" src="https://user-images.githubusercontent.com/100381618/162875017-c84d67ea-6c0d-4005-92d5-57d6cd4f550a.png">
 
 ###### License
 Copyright (c) Nghia le. All Right Reserved
