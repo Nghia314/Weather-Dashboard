@@ -1,5 +1,4 @@
 var apiKey = "a2f42eab89f899c260e503d43e5c869c";
-var search = [];
 // my apikey varib
 // event listener for search button
 var searchBtn = document.getElementById("search-Btn");
@@ -12,14 +11,28 @@ function searchResult() {
     weatherSearch(search);
     forecastSearch(search);
 
-    saveSearch(search);
+    saveSearch(history);
     renderSearch();
 
     document.getElementById("search").value = "";
   }
 }
+function searchList() {
+  history.forEach(function(search){
+    var historyItem = document.createElement("li");
+    historyItem.className = "list-group-item";
+    historyItem.textContent = search;
+    historyItem.addEventListener("click", function (event) {
+      event.preventDefault();
+      weatherSearch(event.target.textContent);
+      forecastSearch(event.target.textContent);
+    });
+    document.getElementById("searchHistory").innerHTML = historyItem;
+    
+  });
+}
 //function for today weather
-function weatherSearch(search) {
+function weatherSearch(search, start) {
   var todayhead = document.getElementById("today-header");
   todayhead.className = "";
   var api = `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=${apiKey}&units=imperial`;
@@ -134,7 +147,7 @@ function forecastSearch(search) {
 }
 // search history save up to local storage
 var history;
-if (JSON.parse(localStorage.getItem("searchHistory")) != null)
+if (JSON.parse(localStorage.setItem("searchHistory")) != null)
   history = JSON.parse(localStorage.getItem("searchHistory"));
 else history = [];
 // save up previous search
@@ -152,16 +165,4 @@ function renderSearch() {
   }
   searchList();
 }
-function searchList() {
-  history.forEach(search);
-  {
-    var historyItem = document.createElement("li");
-    historyItem.className = "list-group-item";
-    historyItem.textContent = search;
-    historyItem.addEventListener("click", function (event) {
-      weatherSearch(event.target.textContent);
-      forecastSearch(event.target.textContent);
-    });
-    document.getElementById("searchHistory").appendChild(historyItem);
-  };
-}
+
